@@ -1,0 +1,19 @@
+name: "Hola Mundo"
+description: "Mi primera acción"
+author: "Patricio"
+
+inputs:
+  comentario:
+    description: "Comentario que se va a mostrar desde consola"
+    require: false
+    default: "Hola Mundo"
+runs:
+  using: "composite"
+  steps:
+    - name: "Obtener código fuente"
+      uses: actions/checkout@v4
+
+    - name: "Comando eco"
+      run: |
+        echo ${{ inputs.comentario }}
+        echo '###########################################'
