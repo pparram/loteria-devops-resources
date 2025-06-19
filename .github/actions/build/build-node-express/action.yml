@@ -1,0 +1,24 @@
+name: "Action de compilacion"
+description: "Esta es la opcion de compilacion"
+author: "Patricio"
+
+inputs:
+  node-version:
+    description: "Version de node"
+    require: false
+    default: [16.x]
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+    - name: Setup Node.js ${{ inputs.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: "npm"
+
+    - name: Run de instalacion
+      run: |
+        npm install
+        npm run build
+      shell: bash
